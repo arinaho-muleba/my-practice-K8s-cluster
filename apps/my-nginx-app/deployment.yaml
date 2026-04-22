@@ -4,7 +4,7 @@ metadata:
   name: my-nginx-app-deployment
   namespace: local
 spec:
-  replicas: 3
+  replicas: 0
   selector:
     matchLabels:
       app: my-nginx-app
