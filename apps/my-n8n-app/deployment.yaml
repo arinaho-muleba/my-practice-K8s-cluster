@@ -17,4 +17,4 @@ spec:
       - name: my-n8n-app-container
         image: n8nio/n8n
         ports:
-        - containerPort: 80
+        - containerPort: 5678
