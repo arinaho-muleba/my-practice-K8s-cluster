@@ -4,7 +4,7 @@ metadata:
   name: my-n8n-app-deployment
   namespace: local
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: my-n8n-app
@@ -14,7 +14,7 @@ spec:
         app: my-n8n-app
     spec:
       containers:
-      - name: my-n8n-app-container
-        image: n8nio/n8n
-        ports:
-        - containerPort: 5678
+        - name: my-n8n-app-container
+          image: n8nio/n8n
+          ports:
+            - containerPort: 5678
