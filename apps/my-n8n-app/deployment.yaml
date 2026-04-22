@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: my-n8n-app-container
-        image: n8n:latest
+        image: n8nio/n8n
         ports:
         - containerPort: 80
