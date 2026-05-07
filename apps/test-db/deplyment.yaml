@@ -23,5 +23,11 @@ spec:
               value: "admin"
             - name: POSTGRES_PASSWORD
               value: "admin"
-            - name: POSTGRES_DB
-              value: "mydb"
+            # - name: POSTGRES_DB
+            #   value: "mydb"
+      volumes:
+        - name: postgres-data
+          emptyDir: {}
+      volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
