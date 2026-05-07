@@ -1,30 +1,30 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: my-flyway-app-deployment
+  name: my-flyway-job
   namespace: local
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: my-flyway-app
+  backoffLimit: 1
   template:
-    metadata:
-      labels:
-        app: my-flyway-app
     spec:
+      restartPolicy: Never
       containers:
         - name: my-flyway-app-container
           image: flyway/flyway:latest
-          ports:
-            - containerPort: 8080
           env:
             - name: FLYWAY_URL
-              value: "jdbc:postgresql://my-test-db:5432/postgres"
+              value: "jdbc:postgresql://my-test-db-service:5432/mydb"
             - name: FLYWAY_USER
               value: "admin"
             - name: FLYWAY_PASSWORD
               value: "admin"
             - name: FLYWAY_LOCATIONS
-              value: "/migrations"
+              value: "filesystem:/flyway/sql"
+          volumeMounts:
+            - name: flyway-sql
+              mountPath: /flyway/sql
           command: ["flyway", "migrate"]
+      volumes:
+        - name: flyway-sql
+          configMap:
+            name: my-flyway-migrations
