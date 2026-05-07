@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/arinaho-muleba/my-practice-K8s-cluster.git
     targetRevision: HEAD
-    path: databases/test-db
+    path: apps/test-db
   destination:
     server: https://kubernetes.default.svc
     namespace: local
