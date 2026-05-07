@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-flyway-app-deployment
+  namespace: local
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-flyway-app
+  template:
+    metadata:
+      labels:
+        app: my-flyway-app
+    spec:
+      containers:
+        - name: my-flyway-app-container
+          image: flyway/flyway:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: FLYWAY_URL
+              value: "jdbc:postgresql://my-test-db:5432/postgres"
+            - name: FLYWAY_USER
+              value: "admin"
+            - name: FLYWAY_PASSWORD
+              value: "admin"
+            - name: FLYWAY_LOCATIONS
+              value: "/migrations"
+          command: ["flyway", "migrate"]
