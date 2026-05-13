@@ -8,6 +8,9 @@ metadata:
 spec:
   backoffLimit: 1
   template:
+    metadata:
+      labels:
+        app: my-flyway-job
     spec:
       restartPolicy: Never
       containers:
