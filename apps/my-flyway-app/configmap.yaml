@@ -17,3 +17,10 @@ data:
         ('jane_smith', 'jane.smith@example.com');
   V3__add_index.sql: |
     CREATE INDEX idx_users_username ON users(username);
+  V4__add_age_column.sql: |
+    ALTER TABLE users ADD COLUMN age INT;
+  V5__update_age_column.sql: |
+    UPDATE users SET age = 30 WHERE username = 'john_doe';
+    UPDATE users SET age = 25 WHERE username = 'jane_smith';
+  V6__add_email_unique_constraint.sql: |
+    ALTER TABLE users ADD CONSTRAINT unique_email UNIQUE (email);
