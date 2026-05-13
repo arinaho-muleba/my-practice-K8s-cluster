@@ -15,3 +15,5 @@ data:
     INSERT INTO users (username, email)
     VALUES ('john_doe', 'john.doe@example.com'),
         ('jane_smith', 'jane.smith@example.com');
+  V3__add_index.sql: |
+    CREATE INDEX idx_users_username ON users(username);
