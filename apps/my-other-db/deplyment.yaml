@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-test-db
+  name: my-other-test-db
   namespace: local
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-test-db
+      app: my-other-test-db
   template:
     metadata:
       labels:
-        app: my-test-db
+        app: my-other-test-db
     spec:
       containers:
-        - name: my-test-db-container
+        - name: my-other-test-db-container
           image: postgres:latest
           ports:
             - containerPort: 5432

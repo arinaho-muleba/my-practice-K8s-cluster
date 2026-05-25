@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-test-db-service
+  name: my-other-test-db-service
   namespace: local
 spec:
   selector:
-    app: my-test-db
+    app: my-other-test-db
   type: NodePort
   ports:
   - protocol: TCP

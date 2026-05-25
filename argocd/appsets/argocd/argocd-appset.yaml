@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset-of-appsets
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/arinaho-muleba/my-practice-K8s-cluster.git
+        revision: HEAD
+        directories:
+          - path: argocd/appsets/*
+  template:
+    metadata:
+      name: "{{ .path.basename }}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/arinaho-muleba/my-practice-K8s-cluster.git
+        targetRevision: HEAD
+        path: "argocd/appsets/{{ .path.basename }}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: local
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
