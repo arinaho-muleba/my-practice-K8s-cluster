@@ -4,7 +4,7 @@ metadata:
   name: my-n8n-app-deployment
   namespace: local
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: my-n8n-app
