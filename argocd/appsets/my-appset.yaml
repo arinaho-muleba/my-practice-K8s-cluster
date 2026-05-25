@@ -14,13 +14,13 @@ spec:
           - path: apps/*
   template:
     metadata:
-      name: "{{path.basename}}"
+      name: "{{ .path.basename }}"
     spec:
       project: default
       source:
         repoURL: https://github.com/arinaho-muleba/my-practice-K8s-cluster.git
         targetRevision: HEAD
-        path: "apps/{{path.basename}}"
+        path: "apps/{{ .path.basename }}"
       destination:
         server: https://kubernetes.default.svc
         namespace: local
